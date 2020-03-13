@@ -21,7 +21,7 @@ void max_heap(vector<int>& v,int start,int end)//将给定范围内排成最大�
 void heap_sort(vector<int>& v)
 {
 	int size=v.size();
-	for(int i=size>>-1;i>=0;--i)//初始化，从最后一个dad开始调整为最大堆
+	for(int i=size>>1-1;i>=0;--i)//初始化，从最后一个dad开始调整为最大堆
 		max_heap(v,i,size-1);
 	for(int i=size-1;i>0;--i)
 	{
