@@ -1,5 +1,6 @@
 class Codec {
 public:
+    //前序遍历输出字符串
     void encode(TreeNode* root,string& res)
     {
         if(root==nullptr) 
@@ -11,12 +12,12 @@ public:
         encode(root->left,res);
         encode(root->right,res);
     }
-    // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
         string res;
         encode(root,res);
         return res;
     }
+    //读取字符串 前序遍历构建树
     TreeNode* decode(string& data,int & p)
     {
         if(data[p]=='$')
