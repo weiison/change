@@ -1,0 +1,46 @@
+class MedianFinder {
+public:
+    /** initialize your data structure here. */
+    MedianFinder() {
+    }
+    
+    void addNum(int num) {
+        if(((maxNum.size()+minNum.size())&1)==0)//总数为偶数插入最大堆 !!(a&b)一定要加括号！！
+        {
+            if(minNum.size()>0&&num>minNum[0])//若要插入的数字大于最小堆堆顶，则应该插入最小堆
+            {
+                minNum.push_back(num);
+                push_heap(minNum.begin(),minNum.end(),greater<int>());//创建最小堆
+                num=minNum[0];//最小堆堆顶数字作为要插入最大堆的数字
+                pop_heap(minNum.begin(),minNum.end(),greater<int>());//弹出最小堆堆顶，堆顶移到数组末尾
+                minNum.pop_back();//从数组中删除
+            }
+            maxNum.push_back(num);
+            push_heap(maxNum.begin(),maxNum.end(),less<int>());
+        }
+        else//总数为奇数插入最小堆
+        {
+            if(maxNum.size()>0&&num<maxNum[0])//若要插入的数字小于最大堆堆顶，则应该插入最大堆
+            {
+                maxNum.push_back(num);
+                push_heap(maxNum.begin(),maxNum.end(),less<int>());//创建最大堆
+                num=maxNum[0];//最大堆堆顶数字作为要插入最小堆的数字
+                pop_heap(maxNum.begin(),maxNum.end(),less<int>());//弹出最大堆堆顶，堆顶移到数组末尾
+                maxNum.pop_back();//从数组中删除
+            }
+            minNum.push_back(num);
+            push_heap(minNum.begin(),minNum.end(),greater<int>());
+        }
+    }
+    
+    double findMedian() {
+        double res;
+        if((maxNum.size()+minNum.size())==0) return NULL;
+        else if(((maxNum.size()+minNum.size())&1)==0) res=((double)maxNum[0]+(double)minNum[0])/2;
+        else res=(double)maxNum[0];
+        return res;
+    }
+private:
+    vector<int> maxNum;
+    vector<int> minNum;
+};
