@@ -13,13 +13,13 @@ public:
         --curD;
     }
     int maxDepth(TreeNode* root) {
-        /*方法一：遍历所有路径，记录最大的一个
+        /*方法一：前序遍历所有路径，记录最大的一个
         int maxD=-1;
         int curD=0;
         DFS(root,curD,maxD);
         return maxD;
         */
-        //方法二，递归调用主函数，从左右子树选一个更深的加一
+        //方法二，后序遍历，从左右子树选一个更深的加一
         if(root==nullptr) return 0;
         int l=maxDepth(root->left);
         int r=maxDepth(root->right);
