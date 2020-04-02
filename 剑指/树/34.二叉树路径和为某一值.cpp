@@ -12,7 +12,7 @@ public:
         }
         if(root->left!=nullptr) pathSumCore(root->left,res,path,curSum,sum);
         if(root->right!=nullptr) pathSumCore(root->right,res,path,curSum,sum);
-        path.pop_back();
+        path.pop_back();//path不是引用可以去掉此行
     }
     vector<vector<int>> pathSum(TreeNode* root, int sum) {
         vector<vector<int>> res;
