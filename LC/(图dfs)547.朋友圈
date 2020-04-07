@@ -1,0 +1,45 @@
+/*
+输入: 
+[[1,1,0],
+ [1,1,0],
+ [0,0,1]]
+输出: 2 
+说明：已知学生0和学生1互为朋友，他们在一个朋友圈。
+第2个学生自己在一个朋友圈。所以返回2。
+输入：
+[1001
+ 0110
+ 0111
+ 1011]
+ 输出：1
+*/
+
+class Solution {
+public:
+    void dfs(vector<vector<int>>& M,vector<int>& vis,int i)
+    {
+        for(int j=0;j<M.size();++j)
+        {
+            if(M[i][j]==1 && vis[j]==0)
+            {
+                vis[j]=1;//找到i号学生的j号朋友，设置为已访问（加入i的朋友圈） 
+                dfs(M,vis,j);//找j的所有朋友
+            }
+        }
+    }
+    int findCircleNum(vector<vector<int>>& M) {
+        int rows=M.size();
+        int cols=M[0].size();
+        vector<int> vis(rows,0);//是否计算过过该学生的朋友圈
+        int res=0;
+        for(int i=0;i<rows;++i)//对每一名学生，找到所有与他关联的人，并设置为已访问
+        {
+            if(vis[i]==0)
+            {
+                ++res;
+                dfs(M,vis,i);
+            }
+        }
+        return res;
+    }
+};
