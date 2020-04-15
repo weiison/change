@@ -40,8 +40,8 @@ public:
         if(flag) num=-num;
         ++p;
         TreeNode* now=new TreeNode(num);
-        now->left=decode(data,p);
-        now->right=decode(data,p);
+        if(p<data.size()) now->left=decode(data,p);
+        if(p<data.size()) now->right=decode(data,p);
         return now;
     }
     // Decodes your encoded data to tree.
