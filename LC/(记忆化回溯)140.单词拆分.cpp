@@ -19,7 +19,7 @@ public:
                     vector<string> tmp=dfs(s,i+1,st,mp);//获得之后的拆分结果
                     for(int i=0;i<tmp.size();++i)
                     {
-                        res.push_back(strtmp+(tmp[i].empty()?"":" ")+tmp[i]);
+                        res.push_back(strtmp+(tmp[i].empty()?"":" ")+tmp[i]);//要区分是否到达末尾，末尾tmp里面只有一个元素为""
                     }
                 }
             }
