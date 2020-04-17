@@ -8,7 +8,7 @@ public:
         }
         vector<string> res;
         if(cur==s.size())
-            res.push_back("");
+            res.push_back("");//确保res里面有元素
         else
         {
             for(int i=cur;i<s.size();++i)
