@@ -8,7 +8,7 @@ public:
         }
         vector<string> res;
         if(cur==s.size())
-            res.push_back("");//确保res里面有元素
+            res.push_back("");//重要！确保res里面有元素
         else
         {
             for(int i=cur;i<s.size();++i)
@@ -17,7 +17,7 @@ public:
                 if(st.find(strtmp)!=st.end())
                 {
                     vector<string> tmp=dfs(s,i+1,st,mp);//获得之后的拆分结果
-                    for(int i=0;i<tmp.size();++i)
+                    for(int i=0;i<tmp.size();++i)//从底向上构建，若末尾没有加""则不会进入这个个循环
                     {
                         res.push_back(strtmp+(tmp[i].empty()?"":" ")+tmp[i]);//要区分是否到达末尾，末尾tmp里面只有一个元素为""
                     }
